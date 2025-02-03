@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 const sendContactUsEmail = async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const { name, email, subject, message, phoneNo } = req.body;
 
   // Validate required fields
   if (!name || !email || !subject || !message) {
@@ -29,8 +29,8 @@ const sendContactUsEmail = async (req, res) => {
         Name: ${name}
         Email: ${email}
         Subject: ${subject}
-        Message:
-        ${message}
+        phoneNo: ${phoneNo}
+        Message: ${message}
       `,
     };
 
