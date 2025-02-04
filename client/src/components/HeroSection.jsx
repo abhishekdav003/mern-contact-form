@@ -3,8 +3,14 @@ import contact_icon from "../assets/contactUs_icon.svg";
 import "./custome.css";
 import ContactUs from "./Contactus";
 
-const images = [
-  "https://res.cloudinary.com/dbnticsz8/image/upload/v1738644825/febTech/Nifa/vuf70b6gvi1rcyxaybmh.jpg",
+const desktopImages = [
+  "https://res.cloudinary.com/dbnticsz8/image/upload/v1738665613/febTech/Nifa/qxi8md9hqaqekyarg8tm.png",
+  "https://res.cloudinary.com/dbnticsz8/image/upload/v1738644703/febTech/Nifa/mdyaupwohu7s3v9n2zne.jpg",
+  "https://res.cloudinary.com/dbnticsz8/image/upload/v1738643659/febTech/Nifa/rrir1e6uecpjwhsukcjg.jpg",
+];
+
+const mobileImages = [
+  "https://res.cloudinary.com/dbnticsz8/image/upload/v1738666020/febTech/Nifa/d5nlcewsjmjjbrpswyda.jpg",
   "https://res.cloudinary.com/dbnticsz8/image/upload/v1738644703/febTech/Nifa/mdyaupwohu7s3v9n2zne.jpg",
   "https://res.cloudinary.com/dbnticsz8/image/upload/v1738643659/febTech/Nifa/rrir1e6uecpjwhsukcjg.jpg",
 ];
@@ -12,18 +18,16 @@ const images = [
 export default function HeroSection() {
   const sliderRef = useRef(null);
   const [showContact, setShowContact] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const slider = sliderRef.current;
     let scrollAmount = 0;
-
-    // Set a constant scroll speed for both desktop and mobile
-    const speed = 2;  // Keep the same speed for both mobile and desktop
+    const speed = 2;
 
     const scrollImages = () => {
       if (slider) {
         scrollAmount += speed;
-        // Reset scroll position after one full cycle of images
         if (scrollAmount >= slider.scrollWidth / 2) {
           scrollAmount = 0;
         }
@@ -32,29 +36,23 @@ export default function HeroSection() {
       requestAnimationFrame(scrollImages);
     };
 
-    scrollImages(); // Start the scrolling animation
+    scrollImages();
 
-    // Ensure the scroll behavior works smoothly during resize
     const handleResize = () => {
-      // Optional: Reset or adjust scrollAmount on resize if needed
-      if (slider) {
-        scrollAmount = slider.scrollLeft;  // Store the current scroll position
-      }
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  const images = isMobile ? mobileImages : desktopImages;
+
   return (
     <div className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-gray-900">
-      <div
-        ref={sliderRef}
-        className="flex w-full h-full overflow-hidden whitespace-nowrap"
-      >
+      <div ref={sliderRef} className="flex w-full h-full overflow-hidden whitespace-nowrap">
         {[...images, ...images].map((src, index) => (
           <img
             key={index}
@@ -65,10 +63,10 @@ export default function HeroSection() {
         ))}
       </div>
       <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white p-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold cormorant-garamond-semibold-italic">
-          Welcome to Our Platform
+        <h1 className="text-4xl md:text-6xl font-bold cormorant-garamond-semibold-italic text-gray-100">
+          Welcome to Nifa Overseas Pvt. Ltd.
         </h1>
-        <p className="text-lg md:text-2xl mt-4">Experience the best services with us</p>
+        <p className="text-lg md:text-2xl mt-4 text-gray-100">Experience the best handcrafted products with us</p>
       </div>
       <div
         className="absolute bottom-0 right-7 h-24 w-24 bg-[#f48504] rounded-full flex justify-center items-center animate-bounce hover:cursor-pointer"
@@ -79,18 +77,9 @@ export default function HeroSection() {
         </span>
       </div>
 
-      {/* Modal for ContactUs Component */}
       {showContact && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="rounded-lg relative">
-            <button
-              className="absolute top-20 right-10 text-gray-600 hover:text-gray-900"
-              onClick={() => setShowContact(false)}
-            >
-              ✖
-            </button>
-            <ContactUs />
-          </div>
+        <div className="absolute inset-0 flex justify-end items-center bg-black bg-opacity-50">
+          <ContactUs onClose={() => setShowContact(false)} />
         </div>
       )}
     </div>
