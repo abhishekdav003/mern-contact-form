@@ -62,11 +62,20 @@ export default function HeroSection() {
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white p-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold cormorant-garamond-semibold-italic text-gray-100">
-          Welcome to Nifa Overseas Pvt. Ltd.
-        </h1>
-        <p className="text-lg md:text-2xl mt-4 text-gray-100">Experience the best handcrafted products with us</p>
+      <div className="absolute inset-0 bg-black bg-opacity-25 flex flex-col items-center justify-center p-4 text-center">
+  <div className="w-3/4 bg-white/35 lg:bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg p-6">
+  <h1 className="text-4xl md:text-6xl font-bold cormorant-garamond-semibold-italic text-red-950">
+    Welcome to Nifa Overseas Pvt. Ltd.
+  </h1>
+  <p className="text-lg md:text-2xl mt-4 text-red-950">
+    Experience The Best Handcrafted Products With Us!
+  </p>
+  <p className="text-lg md:text-2xl mt-4 text-red-950">
+  <marquee>NIFA OVERSEAS is a handicraft export, trading, and manufacturing company that specializes in producing and selling antique handicraft products made by skilled small artisans.</marquee>
+  
+  </p>
+</div>
+
       </div>
       <div
         className="absolute bottom-0 right-7 h-24 w-24 bg-[#f48504] rounded-full flex justify-center items-center animate-bounce hover:cursor-pointer"
@@ -78,7 +87,7 @@ export default function HeroSection() {
       </div>
 
       {showContact && (
-        <div className="absolute inset-0 flex justify-end items-center bg-black bg-opacity-50">
+        <div className="absolute inset-0 flex justify-center lg:justify-end items-center bg-black bg-opacity-50">
           <ContactUs onClose={() => setShowContact(false)} />
         </div>
       )}

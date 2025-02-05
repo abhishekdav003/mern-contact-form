@@ -30,7 +30,7 @@ export default function ContactUs({ onClose }) {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-2 max-w-sm w-1/4  relative">
+    <div className="bg-white shadow-lg rounded-2xl p-3 max-w-sm lg:w-1/4  relative">
       {/* Close button inside ContactUs at top-right */}
       <button
         className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl"
@@ -39,8 +39,8 @@ export default function ContactUs({ onClose }) {
         ✖
       </button>
 
-      <h2 className="text-2xl font-semibold text-gray-700 text-center mb-6">Contact Us</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <h2 className="text-2xl font-semibold text-gray-700 text-center mb-3 cormorant-garamond-bold ">Contact Us</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">
         <div>
           <input
             type="text"
