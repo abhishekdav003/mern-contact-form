@@ -1,6 +1,4 @@
-.bg-img{
-    background-image:"";
-}
+
 .cormorant-garamond-light {
     font-family: "Cormorant Garamond", serif;
     font-weight: 300;
@@ -27,8 +25,9 @@
   
   .cormorant-garamond-bold {
     font-family: "Cormorant Garamond", serif;
-    font-weight: 700;
+    font-weight: 900;
     font-style: normal;
+    /* font-size: xx-large; */
   }
   
   .cormorant-garamond-light-italic {
